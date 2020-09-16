@@ -59,7 +59,7 @@
 
   <!-- FRONT CARD -->
 
-    <div class="front_bottom_white" id="front_card">
+    <div class="front_bottom_white" :class="hide_input===false?'front_card_scroll':''" id="front_card">
 
 
       <!-- CHATS SECTION -->
