@@ -1,0 +1,286 @@
+/* COMMON STYLES */
+.relative {
+  position: relative;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+.float_left {
+  float: left;
+}
+.float_right {
+  float: right;
+}
+
+.position_rel {
+  position: relative;
+}
+.position_abs {
+  position: absolute;
+}
+
+.text-bold {
+  font-weight: 600;
+}
+.clearfix::after {
+  content:"";
+  clear: both;
+  display:table;
+}
+/* COMMON STYLES END */
+
+
+
+/* TOP HALF */
+
+
+.hello_txt {
+  font-weight: bold;
+font-size: 22px;
+margin-bottom:10px;
+}
+.hello_txt svg {
+  left: 70px;
+}
+
+.iris_logo {
+position: absolute;
+width: 53px;
+height: 39px;
+left: 56px;
+top: 19px;
+font-family: DM Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 30px;
+line-height: 39px;
+color: #FFFFFF;
+}
+
+.intro_txt {
+  position: absolute;
+  width: 245px;
+  height: 46px;
+  left: 56px;
+  top: 70px;
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
+  color: #ffffff;
+}
+.intro_txt span {
+  text-align: left;
+  display: block;
+}
+.bg_top_orange {
+  position: absolute;
+  width: 416px;
+  height: 278px;
+  left: 0px;
+  top: -1px;
+  border-radius: 15px 15px 0 0;
+  background: linear-gradient(123.75deg, #f5821f 1.87%, #ff5c00 120.46%);
+}
+.ellipse {
+  position: absolute;
+  width: 67px;
+  height: 67px;
+  left: 38px;
+  top: 165px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ff7600 0%, #ff5c00 100%);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+}
+#boticon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+/* TOP HALF END */
+
+
+
+/* ====FAQS SECTION==== */
+
+.faqs_title {
+  position: absolute;
+  width: 194px;
+  height: 17px;
+  left: 39px;
+  top: 249px;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #2d2d2d;
+}
+.front_bottom_white {
+  position: absolute;
+  width: 390px;
+  height: 400px;
+  overflow-y: scroll;
+  left: 13px;
+  top: 199px;
+  background: #ffffff;
+  border: 1px solid #e4e4e4;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.faq_items {
+  position: relative;
+  width: 340px;
+  height: 50px;
+  left: 38px;
+  background: #ffffff;
+  border: 1px solid #e1e1e1;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 15px 30px;
+  font-family: 'DM sans',sans-serif;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq_items:nth-child(2) {
+  top: 300px;
+}
+.faq_items:nth-child(3) {
+  top: 310px;
+}
+.faq_items:nth-child(4) {
+  top: 320px;
+}
+.faq_items:nth-child(5) {
+  top: 330px;
+}
+.faqs_title svg {
+  color: rgba(255, 118, 0, 0.8);
+  position: absolute;
+  right: -20px;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+.bullet_mark {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 118, 0,0.8);
+    left: 10px;
+    top: 20px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    box-shadow: 0 0px 3px 3px rgba(255,118,0);
+}
+
+
+/* ==== CHAT SECTION ==== */
+.chatbot_container {
+  position: relative;
+  width: 416px;
+  height: 629px;
+  background: #ffffff;
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.08);
+  border-radius: 18px;
+  margin: 0 auto;
+}
+
+.chat_Container {
+  overflow-y : scroll;
+  padding-bottom: 100px;
+}
+
+.chats span {
+  border: 1px solid;
+  display: block;
+  width: 100px;
+  padding: 5px 20px;
+  border-radius: 5px 15px 5px 15px;
+  clear: both;
+  word-break: break-word;
+  margin-bottom: 10px;
+}
+.user_bubble {
+  float: right;
+  background: powderblue;
+  margin-right: 10px;
+}
+.bot_bubble {
+  background: lightgreen;
+  float: left;
+  margin-left: 10px;
+}
+
+#chat_icon {
+  position: absolute;
+  left: 25px;
+  top: 12px;
+}
+/* ==== CHAT SECTION end ==== */
+
+
+
+
+
+
+
+
+/* INPUT SECTION */
+.input_box {
+  position: absolute;
+  width: 268px;
+  height: 44px;
+  cursor: pointer;
+  left: 74px;
+  top: 540px;
+  background: #ffffff;
+  border: 1px solid #d1d1d1;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 100px;
+}
+.start_conv p {
+  padding: 10px 0;
+  margin: 0;
+}
+
+#input_bottom {
+  position: relative;
+}
+#input_bottom input {
+  width: 80%;
+  height: 20px;
+  padding: 10px;
+  border: none;
+}
+#input_bottom input:focus {
+  outline: none;
+}
+.send_btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #000;
+}
+
+.back_link {
+  position: absolute;
+  left: -50px;
+  top: 10px;
+  color: #000;
+}
+
+#appender_base {
+  width: 100%;
+  height: 1px;
+  background: #fff;
+  position: absolute;
+  top: 100px;
+}
