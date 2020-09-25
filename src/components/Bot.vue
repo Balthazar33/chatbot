@@ -98,7 +98,6 @@
 
 <script>
 import axios from "axios";
-
 export default {
   name: "Bot",
   props: {
@@ -115,6 +114,7 @@ export default {
       user_input: "",
       hide_input: true,
       data: [],
+      message:"Bot message",
       botReply: [],
       user_entry: [],
       nomatch: 0,
@@ -147,7 +147,7 @@ export default {
               //loop over received response items
               for (var j = 0; j < self.data[i]["user_input"].length; j++) {
                 //loop over user_input array for each
-                if (self.data[i].user_input[j] == self.user_input) {
+                if (self.data[i].user_input[j] == self.user_input.toLowerCase()) {
                   //Match is found
 
                   if (self.data[i].tag == "finance") {

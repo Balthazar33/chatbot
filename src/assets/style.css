@@ -82,7 +82,7 @@ p ,body{
   color: #fff;
   font-family: "DM sans", sans-serif;
   position: relative;
-  opacity: 0;
+  /* opacity: 0; CHANGE HERE  */ 
   animation: show_intro_txt 2s 2s forwards;
   -webkit-animation: show_intro_txt 2s 2s forwards;
 }
@@ -133,15 +133,14 @@ p ,body{
 .central_robot {
   animation: show_bot 4s 2s forwards;
   -webkit-animation: show_bot 4s 2s forwards;
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 .central_robot_hidden {
   position: absolute;
-  opacity: 0;
+  /* opacity: 0; */
   animation: show_front_card 6s 2s forwards;
   -webkit-animation: show_front_card 6s 2s forwards;
-  opacity: 0;
 }
 
 .ellipse img {
@@ -165,7 +164,7 @@ p ,body{
   font-size: 14px;
   position: relative;
   line-height: 18px;
-  opacity: 0;
+  /* opacity: 0; */
   animation: show_front_card 2s 4s forwards;
   -webkit-animation: show_front_card 2s 4s forwards;
 }
@@ -188,7 +187,7 @@ p ,body{
   box-sizing: border-box;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
-  opacity: 0;
+  /* opacity: 0; */
   animation: show_front_card 2s 4s forwards;
   -webkit-animation: show_front_card 2s 4s forwards;
 }
@@ -212,7 +211,7 @@ p ,body{
   padding: 15px 30px;
   margin-bottom: 10px;
   cursor: pointer;
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 .faq_item:nth-of-type(1) {
@@ -264,7 +263,7 @@ p ,body{
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
   border-radius: 100px;
   font-family: "DM sans", sans-serif;
-  opacity: 0;
+  /* opacity: 0; */
   animation: show_conversation_btn 2s 14s forwards;
   -webkit-animation: show_conversation_btn 2s 14s forwards;
 }
@@ -358,6 +357,15 @@ p ,body{
   top: 80%;
   cursor: pointer;
 }
+
+
+
+/* RESPONSIVE DESIGN */
+@media only screen and (max-width:600px){
+  
+}
+
+
 
 /* ANIMATION FOR OPENING CHATBOT */
 @keyframes show_orange_bg {
