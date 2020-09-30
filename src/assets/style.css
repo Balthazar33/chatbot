@@ -215,23 +215,23 @@ p ,body{
 }
 
 .faq_item:nth-of-type(1) {
-  animation: show_faq 2s 6s 1 forwards;
-  -webkit-animation: show_faq 2s 6s 1 forwards;
+  animation: show_faq 1s 6s 1 forwards;
+  -webkit-animation: show_faq 1s 6s 1 forwards;
 }
 
 .faq_item:nth-of-type(2) {
-  animation: show_faq 2s 8s 1 forwards;
-  -webkit-animation: show_faq 2s 8s 1 forwards;
+  animation: show_faq 1s 8s 1 forwards;
+  -webkit-animation: show_faq 1s 8s 1 forwards;
 }
 
 .faq_item:nth-of-type(3) {
-  animation: show_faq 2s 10s 1 forwards;
-  -webkit-animation: show_faq 2s 10s 1 forwards;
+  animation: show_faq 1s 10s 1 forwards;
+  -webkit-animation: show_faq 1s 10s 1 forwards;
 }
 
 .faq_item:nth-of-type(4) {
-  animation: show_faq 2s 12s 1 forwards;
-  -webkit-animation: show_faq 2s 12s 1 forwards;
+  animation: show_faq 1s 12s 1 forwards;
+  -webkit-animation: show_faq 1s 12s 1 forwards;
 }
 
 .bullet_mark {
