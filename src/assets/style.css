@@ -69,22 +69,23 @@ p ,body{
 .chatbot_container {
   position: relative;
   width: 416px;
-  height: 615px;
-  background: #ffffff;
+  height: 510px;
+  background:#dd1507;
   box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.08);
   border-radius: 18px;
   margin: 0 auto;
+  transition: all ease-in;
+  animation: scaleContainerAnimation 0.5s;
 }
 
 .intro_txt_wrapper {
-  text-align: left;
-  margin: 20px 56px;
+  text-align: center;
   color: #fff;
   font-family: "DM sans", sans-serif;
-  position: relative;
-  /* opacity: 0; CHANGE HERE  */ 
-  animation: show_intro_txt 2s 2s forwards;
-  -webkit-animation: show_intro_txt 2s 2s forwards;
+  padding:10px 0;
+}
+.intro_txt_wrapper h1 {
+  margin: 0;
 }
 
 .bot_title {
@@ -96,38 +97,19 @@ p ,body{
   margin-bottom: 10px;
 }
 
-.intro_txt_wrapper img {
-  left: 70px;
-  top: 50px;
-  position: absolute;
-}
-
-.iris_intro {
-  font-size: 18px;
-}
-
-.bg_top_orange {
-  position: absolute;
-  width: 416px;
-  height: 278px;
-  left: 0px;
-  top: -1px;
-  border-radius: 15px 15px 0 0;
-  background: linear-gradient(123.75deg, #f5821f 1.87%, #ff5c00 120.46%);
-  animation: show_orange_bg 2s forwards;
-}
 
 .ellipse {
-  position: relative;
   width: 67px;
   height: 67px;
-  left: 38px;
-  top: 165px;
   margin: 0;
-  z-index: 1;
   border-radius: 50%;
-  background: linear-gradient(180deg, #ff7600 0%, #ff5c00 100%);
+  background: #dd1507;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+  position: absolute;
+}
+.ellipse i {
+  color:#fff;
+  font-size:3em;
 }
 
 .central_robot {
@@ -164,7 +146,7 @@ p ,body{
   font-size: 14px;
   position: relative;
   line-height: 18px;
-  /* opacity: 0; */
+  text-align:center;
   animation: show_front_card 2s 4s forwards;
   -webkit-animation: show_front_card 2s 4s forwards;
 }
@@ -177,19 +159,17 @@ p ,body{
 }
 
 .front_bottom_card {
-  position: relative;
+  
   width: 390px;
   height: 400px;
-  left: 13px;
-  top: 132px;
+  overflow: hidden;
   background: #ffffff;
   border: 1px solid #e4e4e4;
   box-sizing: border-box;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
-  /* opacity: 0; */
-  animation: show_front_card 2s 4s forwards;
-  -webkit-animation: show_front_card 2s 4s forwards;
+  margin: 0 auto;
+  
 }
 
 .faq_items {
@@ -208,66 +188,44 @@ p ,body{
   border-radius: 8px;
   font-size: 12px;
   position: relative;
-  padding: 15px 30px;
+  padding: 15px 10px;
   margin-bottom: 10px;
   cursor: pointer;
   /* opacity: 0; */
 }
-
-.faq_item:nth-of-type(1) {
-  animation: show_faq 1s 6s 1 forwards;
-  -webkit-animation: show_faq 1s 6s 1 forwards;
+.faq_item p {
+  padding: 0 30px;
+}
+.faq_item i {
+  padding:0 10px;
+  float:left;
 }
 
-.faq_item:nth-of-type(2) {
-  animation: show_faq 1s 8s 1 forwards;
-  -webkit-animation: show_faq 1s 8s 1 forwards;
-}
 
-.faq_item:nth-of-type(3) {
-  animation: show_faq 1s 10s 1 forwards;
-  -webkit-animation: show_faq 1s 10s 1 forwards;
-}
 
-.faq_item:nth-of-type(4) {
-  animation: show_faq 1s 12s 1 forwards;
-  -webkit-animation: show_faq 1s 12s 1 forwards;
-}
-
-.bullet_mark {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: rgba(255, 118, 0, 0.8);
-  left: 12px;
-  top: 19px;
-  box-sizing: border-box;
-  border-radius: 50%;
-  box-shadow: 0 0px 0 2px rgba(255, 118, 0, 0.3);
-}
 
 /* FAQS END */
 
 /* INPUT SECTION */
 
 .input_box {
-  position: absolute;
-  width: 268px;
+  position: relative;
+  width: 150px;
   height: 44px;
   cursor: pointer;
-  left: 55px;
-  bottom: 30px;
+  margin:0 auto;
   background: #ffffff;
   border: 1px solid #d1d1d1;
   box-sizing: border-box;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
   border-radius: 100px;
+  transition: 0.5s;
+  bottom:30px;
   font-family: "DM sans", sans-serif;
-  /* opacity: 0; */
-  animation: show_conversation_btn 2s 14s forwards;
-  -webkit-animation: show_conversation_btn 2s 14s forwards;
 }
-
+.to_bottom {
+  transform:translateY(10px) !important;
+}
 .start_conv {
   position: relative;
 }
@@ -316,17 +274,20 @@ p ,body{
 /* ==== CHAT SECTION ==== */
 
 #chats_wrapper {
-  margin-top: 30px;
+  padding:20px 0;
   overflow-y: scroll;
-  height: 280px;
+  height: 325px;
   font-family: "DM sans", sans-serif;
   font-size: 14px;
 }
 
 .user_bubble, .bot_bubble {
-  width: 100px;
-  padding: 10px 15px;
+  width: 160px;
+  padding: 5px 20px;
   border-radius: 30px;
+  margin-bottom: 5px;
+  line-height: 1.2;
+  overflow-wrap: break-word;
 }
 
 .user_bubble {
@@ -352,136 +313,42 @@ p ,body{
 /* OPEN CHAT BOT */
 
 .open_chatbot {
-  position: fixed;
+  /* position: fixed; */
   left: 80%;
   top: 80%;
   cursor: pointer;
 }
-
+.open_chatbot i{
+  color:#fff;
+  font-size: 3em;
+}
 
 
 /* RESPONSIVE DESIGN */
-@media only screen and (max-width:600px){
-  
+@media only screen and (max-width:767px){
+  .front_bottom_card,.chatbot_container{
+    width: 95%;
+    margin: 0 auto;
+  }
+  .input_box{
+    width:70%;
+  }
+
+  .chatbot_container {
+    animation: spinContainerAnimation 0.5s;
+  }
+
 }
 
-
-
-/* ANIMATION FOR OPENING CHATBOT */
-@keyframes show_orange_bg {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+@keyframes spinContainerAnimation {
+  0%{transform: scale(0) rotateY(0deg);}
+  /* 50%{transform: scale(1.02);} */
+  100%{transform: scale(1) rotateY(720deg);}
 }
 
-@keyframes show_intro_txt {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes show_bot {
-  0% {
-    opacity: 0;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
-
-@keyframes show_front_card {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes show_faq {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes show_conversation_btn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes show_orange_bg {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes show_intro_txt {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes show_bot {
-  0% {
-    opacity: 0;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
-
-@-webkit-keyframes show_front_card {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes show_faq {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes show_conversation_btn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+/* ANIMATIONS */
+@keyframes scaleContainerAnimation {
+  0%{transform: scale(0);}
+  50%{transform: scale(1.02);}
+  100%{transform: scale(1)}
 }

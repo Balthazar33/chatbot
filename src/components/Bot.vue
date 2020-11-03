@@ -3,80 +3,47 @@
     <!-- MAIN APP WRAPPER -->
     <transition name="fade">
     <div class="chatbot_container" v-if="chat_bot_open">
-      <div class="bg_top_orange">
+      <div>
         <div class="intro_txt_wrapper">
-          <p class="bot_title txt-bg">IRIS</p>
-          <p class="txt-md hello_txt text-bold">Hello</p>
-          <img src="@/assets/images/hand_wave.png" alt />
-          <p class="iris_intro">
-            I am Iris, a Virtual Assistant
-            <br />How may I help you?
-          </p>
+          
+            <header>
+              <h1>HELLO</h1>
+              <p>Welcome to Vue-Bot</p>
+            </header>
+          
         </div>
       </div>
 
-      <!-- BOT ICON -->
-      <div class="central_robot ellipse">
-        <img src="@/assets/images/Vector.svg" alt />
-      </div>
-      <div class="central_robot_hidden ellipse">
-        <img src="@/assets/images/Vector.svg" alt />
-      </div>
 
       <!-- FRONT CARD -->
 
       <div class="front_bottom_card" id="front_card">
-
+        <transition name="fade">
         <div id="faqs" v-if="hide_input==true">
-          <div class="faqs_title text-bold">
+          <div class="faqs_title text-center text-bold">
             <p>
-              Frequently asked questions
-              <img
-                src="@/assets/images/question_mark.svg"
-                alt="Question mark"
-              />
+              FAQs
             </p>
           </div>
 
           <!-- FAQ items -->
-          <div class="faq_items">
-            <div
-              class="faq_item"
-              v-for="(item,index) in questions"
-              :key="'item'+index"
-              @click="faq_clicked(index)"
-            >
-              <span class="bullet_mark"></span>
-              <span>{{item}}</span>
-            </div>
-          </div>
+         <faq-items  @faq-clicked="faq_clicked" :questions="questions"></faq-items>
         </div>
+        </transition>
 
         <!-- CHATS SECTION -->
-        <div
-          id="chats_wrapper"
-          :class="hide_input===false?'card_scroll':''"
-          v-if="hide_input===false"
-        >
-          <div class="chat_Container">
-            <div class="chat clearfix" v-for="(entry,index) in chats" :key="'entry'+index">
-              <!-- Check if user or bot, place accordingly -->
-              <span :class="entry.user_or_bot=='bot'? 'bot_bubble':'user_bubble'">{{entry.text}}</span>
-            </div>
-          </div>
-        </div>
-
+        <chat-section :isTyping="isTyping" :chats="chats" :hide_input="hide_input"></chat-section>
         <!-- INPUT SECTION -->
 
-        <div class="input_box">
+        <div class="input_box" :class="!hide_input?'to_bottom':''">
           <div class="start_conv" @click="hide_input=false" v-if="hide_input==true">
-            <img src="@/assets/images/chat_icon.svg" alt="Chat icon" />
-            <p>Start a new conversation</p>
+          
+            <p> <i class="fa fa-commenting"></i> Begin chat</p>
           </div>
 
           <!-- INPUT FIELD -->
           <div id="input_bottom" v-if="!hide_input">
-            <input type="text" name="chat_input" v-model="user_input" @keyup.enter="send_Clicked" />
+            <input type="text" name="chat_input" v-model.trim="user_input" @keyup.enter="send_Clicked" />
             <a href="javascript:void(0);" @click="send_Clicked" class="send_btn">
               <i class="fa fa-paper-plane"></i>
             </a>
@@ -90,30 +57,32 @@
       </div>
     </div>
     </transition>
-    <div class="open_chatbot ellipse" @click="open_chatbot">
-        <img src="@/assets/images/Vector.svg" alt />
-      </div>
+
+    <!-- OPEN CHATBOT -->
+    <open-chatbot @open-chatbot="open_chatbot"></open-chatbot>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import OpenChatbot from "@/components/OpenChatbot.vue";
+import ChatSection from "@/components/ChatSection.vue";
+import FaqItems from "@/components/FaqItems.vue";
 export default {
   name: "Bot",
   props: {
     msg: String,
   },
+  components:{
+    OpenChatbot,ChatSection,FaqItems
+  },
   data() {
     return {
       questions: [
-        "Can I redeem my FB before the original term?",
-        "How do I pay my Credit card bill?",
-        "How can I get my Account Statement?",
-        "What is the tenure of Fixed Deposit?",
-      ],
+],    isTyping:false,
       user_input: "",
       hide_input: true,
-      data: [],
+      responseData: [],
       message:"Bot message",
       botReply: [],
       user_entry: [],
@@ -123,49 +92,67 @@ export default {
       chat_bot_open:false,
     };
   },
+  mounted(){
+    this.getQuestions();
+  },
   methods: {
+    getQuestions(){
+      const self = this;
+      axios.get("https://my-json-server.typicode.com/Balthazar33/myjson_json/inputs?tag=vue_faqs")
+      .then(response=>{
+        console.log(response);
+        self.questions = response.data[0].user_input;
+      });
+    },
     open_chatbot(){
       this.chat_bot_open = !this.chat_bot_open;
     },
-    send_Clicked(index) {
+    send_Clicked(index,faqClicked) {
       this.match_found = "";
-
+      const lowerCasedInput = this.user_input.toLowerCase();
+      if(!lowerCasedInput.endsWith('?') && (lowerCasedInput.startsWith('wh') || lowerCasedInput.startsWith('can') || lowerCasedInput.startsWith('how'))){
+        this.user_input = this.user_input+'?';
+      }
       var self = this;
       if (self.user_input != "") {
         self.chats.push({
           text: self.user_input,
           user_or_bot: "user",
         });
-
-        axios
+        this.isTyping = true;
+        const isPreset = this.questions.includes(this.user_input);
+        isPreset? index=this.questions.indexOf(this.user_input):'';
+        if(!faqClicked && !isPreset){ //IF INPUT IS NOT PRESET
+          axios
           .get(
             "https://my-json-server.typicode.com/Balthazar33/myjson_json/inputs"
           )
           .then((response) => {
-            this.data = response.data;
-            for (var i = 0; i < self.data.length; i++) {
+            self.isTyping = false;
+            self.responseData = response.data;
+            for (var i = 0; i < self.responseData.length; i++) {
               //loop over received response items
-              for (var j = 0; j < self.data[i]["user_input"].length; j++) {
+              for (var j = 0; j < self.responseData[i]["user_input"].length; j++) {
                 //loop over user_input array for each
-                if (self.data[i].user_input[j] == self.user_input.toLowerCase()) {
+                if (self.responseData[i].user_input[j] == self.user_input.toLowerCase()) {
                   //Match is found
 
-                  if (self.data[i].tag == "finance") {
-                    //If it is a question of finance category...
+                  if (self.responseData[i].tag === 'vue_faqs') {
+                    //If it's a preset question...
                     self.chats.push({
-                      text: self.data[i].responses[index], //...provide accurate response
+                      text: self.responseData[i].responses[index], //...provide preset response
                       user_or_bot: "bot",
                     });
-                    self.match_found = self.data[i].responses[index];
+                    self.match_found = self.responseData[i].responses[index];
                   } else {
                     var randomint = Math.floor(
-                      Math.random() * self.data[i].responses.length
+                      Math.random() * self.responseData[i].responses.length
                     ); //random integer from 0 to length of response array
                     self.chats.push({
-                      text: self.data[i].responses[randomint],
+                      text: self.responseData[i].responses[randomint],
                       user_or_bot: "bot",
                     });
-                    self.match_found = self.data[i].responses[randomint];
+                    self.match_found = self.responseData[i].responses[randomint];
                   }
 
                   self.nomatch = 0; //Update match flag
@@ -177,26 +164,54 @@ export default {
                 }
               }
             }
+
             self.user_input = ""; //Clear input field
 
             if (self.nomatch === 1) {
               //If no match is found, print default
               self.chats.push({
-                text: "Sorry, didn't get that.",
+                text: "Sorry, didn't get that. Please contact",
                 user_or_bot: "bot",
               });
             }
-
-            //Make div scroll to top
-            var front_card = document.getElementById("chats_wrapper");
-            front_card.scrollTop = front_card.scrollHeight + 200;
+            self.scrollChatBoxToTop();
           });
+        }
+        else{
+          this.isTyping = false;
+          // console.log("responseData",this.responseData);
+          axios.get("https://my-json-server.typicode.com/Balthazar33/myjson_json/inputs?tag=vue_faqs")
+          .then(response=>{
+            self.responseData = response.data;
+          });
+          // console.log("response",self.responseData)
+          self.chats.push({
+              //CHECK IF INPUT IS USER TYPED OR PRESET 
+                text: faqClicked?  self.responseData[index]: self.responseData[0].responses[index],
+                user_or_bot: "bot",
+              });
+          self.user_input = ""; //Clear input field
+          self.scrollChatBoxToTop();
+        }
       }
     },
-    faq_clicked(index) {
-      this.user_input = this.questions[index]; //Use preset faq question for chat
-      this.hide_input = false; //Make faqs invisible
-      this.send_Clicked(index);
+     faq_clicked(index) {
+       const self = this;
+      axios.get("https://my-json-server.typicode.com/Balthazar33/myjson_json/inputs?tag=vue_faqs")
+      .then(response=>{
+        
+        self.questions = response.data[0].user_input;
+        self.responseData = response.data[0].responses;
+        self.user_input = this.questions[index]; //Use preset faq question for chat
+      self.hide_input = false; //Make faqs invisible
+      self.send_Clicked(index,true);
+      });
+      
+    },
+    scrollChatBoxToTop(){
+      //Make div scroll to top
+      var front_card = document.getElementById("chats_wrapper");
+      front_card.scrollTop = front_card.scrollHeight + 200;
     },
     reset_chat() {
       this.hide_input = true; //Go back to start page
