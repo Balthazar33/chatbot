@@ -41,14 +41,15 @@ content: "";
     left: 0;
     top: 0;
     -webkit-animation: pulsate 1.5s   forwards;
-    animation:pulsate 1.5s  infinite;
+    animation:pulsate 2s  infinite;
 }
 
 
 
 @keyframes pulsate {
     0%{transform: scale(1);opacity: 1;}
-    100%{transform: scale(1.2);opacity: 0;}
+    50%{transform: scale(1.12);opacity: 0.5;}
+    100%{transform: scale(1.25);opacity: 0;}
 }
 
 

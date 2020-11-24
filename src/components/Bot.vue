@@ -8,7 +8,7 @@
           
             <header>
               <h1>HELLO</h1>
-              <p>Welcome to Vue-Bot</p>
+              <p>Welcome to Vue-Bot!</p>
             </header>
           
         </div>
